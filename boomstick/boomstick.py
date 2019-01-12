@@ -10,13 +10,14 @@ See LICENSE.MD
 """
 
 import logging
+
 import coloredlogs
 
 
-class Logger:
+class Logger(logging.Logger):
 
-    def __init__(self, logfile: str):
-        self.log = logging.getLogger(f"{__name__}")
+    def __init__(self, name, logfile: str, level=logging.NOTSET, ):
+        super().__init__(name=name, level=level)
 
         # create a handler for said logger...
         file_logger = logging.FileHandler(logfile, 'a', encoding="utf-8")
@@ -28,14 +29,14 @@ class Logger:
         file_logger.setFormatter(file_logger_format)
 
         # add the handler to the log.
-        logging.getLogger(f"{__name__}").addHandler(file_logger)
+        self.addHandler(file_logger)
 
         # set proper severity level
-        self.log.setLevel(10)
+        self.setLevel(10)
 
         # add Console logging
         console = logging.StreamHandler()
-        logging.getLogger(f"{__name__}").addHandler(console)
+        self.addHandler(console)
 
         # add console logging format
         console_format = logging.Formatter(log_format)
@@ -55,7 +56,7 @@ class Logger:
                            'name': {'color': 'yellow', 'bright': True}}
 
         # coloredlogs hook
-        coloredlogs.install(handler=f"{__name__}",
+        coloredlogs.install(handler=name,
                             level='a',
                             fmt=log_format,
                             level_styles=log_levelstyles,
@@ -65,6 +66,6 @@ class Logger:
                             )
 
         # disable propagation
-        self.log.propagate = False
+        self.propagate = False
 
-        self.log.info("Boomstick Loaded and ready for logging.")
+        self.info("Boomstick Loaded and ready for logging.")
