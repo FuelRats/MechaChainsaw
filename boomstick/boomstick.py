@@ -13,34 +13,37 @@ import logging
 import coloredlogs
 
 
-class Boomstick:
+class Logger:
 
-    LOG = logging.getLogger()
+    def __init__(self, logfile: str):
+        self.log = logging.getLogger(f"{__name__}")
 
-    def setup_logging(self, logfile: str):
-        _LOG_LEVEL = logging.DEBUG
-
-        #####
-        # File Handler
-        ###
-
-        file_logger = logging.FileHandler(logfile, 'a', encoding='utf-8')
+        # create a handler for said logger...
+        file_logger = logging.FileHandler(logfile, 'a', encoding="utf-8")
         log_format = '<%(asctime)s %(name)s> [%(levelname)s] %(message)s'
         log_datefmt = '%Y-%m-%d %H:%M:%S'
         file_logger_format = logging.Formatter(log_format)
-        file_logger.setFormatter(log_format)
-        logging.getLogger().addHandler(log_format)
-        Boomstick.LOG.setLevel(_LOG_LEVEL)
 
-        #####
-        # Console Handler
-        ###
+        # set the formatter to actually use it
+        file_logger.setFormatter(file_logger_format)
+
+        # add the handler to the log.
+        logging.getLogger(f"{__name__}").addHandler(file_logger)
+
+        # set proper severity level
+        self.log.setLevel(10)
+
+        # add Console logging
         console = logging.StreamHandler()
-        logging.getLogger().addHandler(console)
+        logging.getLogger(f"{__name__}").addHandler(console)
 
-        #####
-        # ColoredLogs hooks
-        ###
+        # add console logging format
+        console_format = logging.Formatter(log_format)
+
+        # set console formatter to use our format.
+        console.setFormatter(console_format)
+
+        # coloredlogs hook
         log_levelstyles = {'critical': {'color': 'red', 'bold': True},
                            'error': {'color': 'red', 'bright': True},
                            'warning': {'color': 'yellow', 'bright': True},
@@ -52,8 +55,8 @@ class Boomstick:
                            'name': {'color': 'yellow', 'bright': True}}
 
         # coloredlogs hook
-        coloredlogs.install(handler=__name__,
-                            level=_LOG_LEVEL,
+        coloredlogs.install(handler=f"{__name__}",
+                            level='a',
                             fmt=log_format,
                             level_styles=log_levelstyles,
                             field_styles=log_fieldstyles,
@@ -62,12 +65,6 @@ class Boomstick:
                             )
 
         # disable propagation
-        self.LOG.propagate = False
+        self.log.propagate = False
 
-        Boomstick.LOG.info(f"[Boomstick] Logging started.")
-
-    def demo(self):
-        self.LOG.debug("[Boomstick Demo] This is a Debug Entry.")
-        self.LOG.info("[Boomstick Demo] This is an Info Entry.")
-        self.LOG.warning("[Boomstick Demo] This is a Warning Entry.")
-        self.LOG.error("[Boomstick Demo] This is an Error Entry.")
+        self.log.info("Boomstick Loaded and ready for logging.")
