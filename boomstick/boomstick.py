@@ -58,6 +58,7 @@ class Logger(logging.Logger):
         # coloredlogs hook
         coloredlogs.install(handler=name,
                             level='a',
+                            logger=self,
                             fmt=log_format,
                             level_styles=log_levelstyles,
                             field_styles=log_fieldstyles,
