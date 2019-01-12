@@ -17,7 +17,18 @@ and import boomstick with ``import boomstick``
 
 ### Usage
 
-*Coming Soon*
+```py
+from boomstick import Logger``
+log = Logger("Namespace", "Logfile.txt")
+log.info("This is an info-level entry!")
+```
+
+
+will get you:
+```
+<2019-01-12 15:17:40,572 Namespace> [INFO] This is an info-level entry!
+```
+
 
 ### License
 
