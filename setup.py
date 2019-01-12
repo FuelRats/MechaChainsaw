@@ -8,7 +8,7 @@ setup(
     name='Boomstick',
     author='The Fuel Rats Mischief',
     url='https://github.com/FuelRats/boomstick',
-    version='0.1dev2',
+    version='0.1dev3',
     packages=['boomstick', ],
     license='BSD-3-Clause',
     long_description=long_description,
