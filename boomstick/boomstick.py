@@ -56,7 +56,7 @@ class Logger(logging.Logger):
                            'name': {'color': 'yellow', 'bright': True}}
 
         # coloredlogs hook
-        coloredlogs.install(handler=f"{name}",
+        coloredlogs.install(handler=name,
                             level='a',
                             fmt=log_format,
                             level_styles=log_levelstyles,
