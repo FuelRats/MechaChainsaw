@@ -8,5 +8,5 @@ Licensed under the BSD 3-Clause License.
 
 See LICENSE.MD
 """
-__all__ = ["boomstick"]
+__all__ = ["boomstick", "Logger"]
 from .boomstick import Logger
