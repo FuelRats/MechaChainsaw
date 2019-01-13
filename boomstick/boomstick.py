@@ -10,26 +10,26 @@ See LICENSE.MD
 """
 
 import logging
-
 import coloredlogs
+from typing import Optional, Dict
 
 
 class Logger(logging.Logger):
 
-    def __init__(self, name, logfile: str, level=logging.NOTSET, ):
+    def __init__(self, name, logfile: Optional[str] = None, level=logging.NOTSET,
+                 field_styles: Optional[Dict] = None, level_styles: Optional[Dict] = None):
         super().__init__(name=name, level=level)
 
-        # create a handler for said logger...
-        file_logger = logging.FileHandler(logfile, 'a', encoding="utf-8")
+        # Formatters
         log_format = '<%(asctime)s %(name)s> [%(levelname)s] %(message)s'
         log_datefmt = '%Y-%m-%d %H:%M:%S'
-        file_logger_format = logging.Formatter(log_format)
 
-        # set the formatter to actually use it
-        file_logger.setFormatter(file_logger_format)
-
-        # add the handler to the log.
-        self.addHandler(file_logger)
+        # If a log file was specified, add a handler for it.
+        if logfile:
+            file_logger = logging.FileHandler(logfile, 'a', encoding="utf-8")
+            file_logger_format = logging.Formatter(log_format)
+            file_logger.setFormatter(file_logger_format)
+            self.addHandler(file_logger)
 
         # set proper severity level
         self.setLevel(10)
@@ -45,23 +45,25 @@ class Logger(logging.Logger):
         console.setFormatter(console_format)
 
         # coloredlogs hook
-        log_levelstyles = {'critical': {'color': 'red', 'bold': True},
-                           'error': {'color': 'red', 'bright': True},
-                           'warning': {'color': 'yellow', 'bright': True},
-                           'info': {'color': 'white', 'bright': True},
-                           'debug': {'color': 'black', 'bright': True}}
+        if not level_styles:
+            level_styles = {'critical': {'color': 'red', 'bold': True},
+                            'error': {'color': 'red', 'bright': True},
+                            'warning': {'color': 'yellow', 'bright': True},
+                            'info': {'color': 'white', 'bright': True},
+                            'debug': {'color': 'black', 'bright': True}}
 
-        log_fieldstyles = {'asctime': {'color': 'white', 'bright': True},
-                           'levelname': {'color': 'white', 'bright': True},
-                           'name': {'color': 'yellow', 'bright': True}}
+        if not field_styles:
+            field_styles = {'asctime': {'color': 'white', 'bright': True},
+                            'levelname': {'color': 'white', 'bright': True},
+                            'name': {'color': 'yellow', 'bright': True}}
 
         # coloredlogs hook
         coloredlogs.install(handler=name,
-                            level='a',
+                            level=logging.DEBUG,
                             logger=self,
                             fmt=log_format,
-                            level_styles=log_levelstyles,
-                            field_styles=log_fieldstyles,
+                            level_styles=level_styles,
+                            field_styles=field_styles,
                             datefmt=log_datefmt,
                             isatty=True,
                             )
@@ -70,3 +72,10 @@ class Logger(logging.Logger):
         self.propagate = False
 
         self.info("Boomstick Loaded and ready for logging.")
+
+    def demo(self):
+        self.debug("Example Debug Statement")
+        self.info("Example INFO Statement")
+        self.warning("Example WARNING Statement")
+        self.exception("Example EXCEPTION Statement")
+        self.error("Example ERROR Statement")
