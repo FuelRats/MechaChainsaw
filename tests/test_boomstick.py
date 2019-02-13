@@ -57,3 +57,17 @@ def test_logging_demo_output(boomstick_logger_fx):
     Raise no error when running demo content
     """
     boomstick_logger_fx.demo()
+
+
+def test_custom_log_string_format(boomstick_logger_fx):
+    """
+    Raise no error when using a custom log format
+    """
+    log_handler = Logger("testing", log_format="%(asctime)s %(name)s> %(message)s")
+
+
+def test_custom_log_string_dateformat(boomstick_logger_fx):
+    """
+    Raise no error when using a custom date format for the log string.
+    """
+    log_handler = Logger("testing", log_datefmt='%H:%M:%S')

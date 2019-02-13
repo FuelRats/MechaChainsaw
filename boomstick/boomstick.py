@@ -13,16 +13,23 @@ import logging
 import coloredlogs
 from typing import Optional, Dict
 
+# Log and Date Format
+LOG_FORMAT = '<%(asctime)s %(name)s> [%(levelname)s] %(message)s'
+DATE_FORMAT = '%Y-%m-%d %H:%M:%S'
+
 
 class Logger(logging.Logger):
 
-    def __init__(self, name, logfile: Optional[str] = None, level=logging.NOTSET,
-                 field_styles: Optional[Dict] = None, level_styles: Optional[Dict] = None):
+    def __init__(self,
+                 name,
+                 logfile: Optional[str] = None,
+                 level=logging.NOTSET,
+                 log_format=LOG_FORMAT,
+                 log_datefmt=DATE_FORMAT,
+                 field_styles: Optional[Dict] = None,
+                 level_styles: Optional[Dict] = None
+                 ):
         super().__init__(name=name, level=level)
-
-        # Formatters
-        log_format = '<%(asctime)s %(name)s> [%(levelname)s] %(message)s'
-        log_datefmt = '%Y-%m-%d %H:%M:%S'
 
         # If a log file was specified, add a handler for it.
         if logfile:
