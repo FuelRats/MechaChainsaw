@@ -8,7 +8,7 @@ setup(
     name='Boomstick',
     author='The Fuel Rats Mischief',
     url='https://github.com/FuelRats/boomstick',
-    version='1.0',
+    version='1.01',
     packages=['boomstick', ],
     license='BSD-3-Clause',
     long_description=long_description,
@@ -16,6 +16,6 @@ setup(
     classifiers=["Programming Language :: Python :: 3",
                  "License :: OSI Approved :: BSD License",
                  "Operating System :: OS Independent",
-                 "Development Status :: 2 - Pre-Alpha",
+                 "Development Status :: 5 - Production/Stable",
                  "Intended Audience :: Developers"],
 )
