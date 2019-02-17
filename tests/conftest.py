@@ -8,7 +8,7 @@ Licensed under the BSD 3-Clause License.
 
 See LICENSE
 """
-from boomstick import Logger
+from mechachainsaw import Logger
 
 import pytest
 

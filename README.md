@@ -1,4 +1,4 @@
-# Boomstick
+# Mecha Chainsaw
 
 This project is under current development, and is intended as a logging library for [mechasqueak3](https://github.com/FuelRats/pipsqueak3).
 
@@ -12,13 +12,13 @@ This project is currently in *pre-release*.  Use at your own risk!
 
 ### Installation
 This is python library.  Install using pip/pipenv
-and import boomstick with ``import boomstick``
+and import mechachainsaw with ``import mechachainsaw``
 
 
 ### Usage
 
 ```py
-from boomstick import Logger``
+from mechachainsaw import Logger``
 log = Logger("Namespace", "Logfile.txt")
 log.info("This is an info-level entry!")
 ```

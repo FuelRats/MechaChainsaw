@@ -1,5 +1,5 @@
 """
-boomstick.py - Logging engine
+mechachainsaw.py - Logging engine. vrrooom vroom!
 
 Copyright (c) 2018 The Fuel Rat Mischief,
 All rights reserved.
@@ -78,7 +78,7 @@ class Logger(logging.Logger):
         # disable propagation
         self.propagate = False
 
-        self.info("Boomstick Loaded and ready for logging.")
+        self.debug("Chainsaw Loaded and ready for logging.")
 
     def demo(self):
         self.debug("Example Debug Statement")

@@ -1,5 +1,5 @@
 """
-test_boomstick.py
+test_mechachainsaw.py
 
 Tests for the logging module
 
@@ -10,7 +10,7 @@ Licensed under the BSD 3-Clause License.
 
 See LICENSE.md
 """
-from boomstick import Logger
+from mechachainsaw import Logger
 
 
 def test_logging_without_file():
