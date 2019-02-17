@@ -8,7 +8,7 @@ setup(
     name='mechachainsaw',
     author='The Fuel Rats Mischief',
     url='https://github.com/FuelRats/mechachainsaw',
-    version='1.01',
+    version='1.2',
     packages=['mechachainsaw', ],
     license='BSD-3-Clause',
     long_description=long_description,

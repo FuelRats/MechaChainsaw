@@ -14,9 +14,15 @@ import pytest
 
 
 @pytest.fixture
-def boomstick_logger_fx() -> Logger:
+def chainsaw_logger_fx() -> Logger:
     return Logger("Testing")
 
+
 @pytest.fixture
-def boomstick_logger_file_fx() -> Logger:
-    return Logger("File_Testing", logfile="testing.log")
+def chainsaw_logger_file_fx() -> Logger:
+    return Logger("File_Testing", logfile="testing.log", logfile_mode='a')
+
+
+@pytest.fixture
+def chainsaw_logger_file_w_fx() -> Logger:
+    return Logger("File_Testing_w", logfile="testing_w.log", logfile_mode='w')

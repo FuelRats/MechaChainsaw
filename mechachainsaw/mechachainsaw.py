@@ -22,24 +22,26 @@ class Logger(logging.Logger):
 
     def __init__(self,
                  name,
-                 logfile: Optional[str] = None,
-                 level=logging.NOTSET,
+                 level=logging.DEBUG,
                  log_format=LOG_FORMAT,
                  log_datefmt=DATE_FORMAT,
+                 logfile: Optional[str] = None,
+                 logfile_mode: Optional[str] = 'a',
                  field_styles: Optional[Dict] = None,
-                 level_styles: Optional[Dict] = None
+                 level_styles: Optional[Dict] = None,
+                 use_colors=True
                  ):
         super().__init__(name=name, level=level)
 
         # If a log file was specified, add a handler for it.
         if logfile:
-            file_logger = logging.FileHandler(logfile, 'a', encoding="utf-8")
+            file_logger = logging.FileHandler(logfile, logfile_mode, encoding="utf-8")
             file_logger_format = logging.Formatter(log_format)
             file_logger.setFormatter(file_logger_format)
             self.addHandler(file_logger)
 
         # set proper severity level
-        self.setLevel(10)
+        self.setLevel(level)
 
         # add Console logging
         console = logging.StreamHandler()
@@ -72,7 +74,7 @@ class Logger(logging.Logger):
                             level_styles=level_styles,
                             field_styles=field_styles,
                             datefmt=log_datefmt,
-                            isatty=True,
+                            isatty=use_colors,
                             )
 
         # disable propagation
