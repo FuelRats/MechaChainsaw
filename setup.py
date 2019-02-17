@@ -7,6 +7,8 @@ with open("README.md", "r") as fh:
 setup(
     name='mechachainsaw',
     author='The Fuel Rats Mischief',
+    author_email='shatt@fuelrats.com',
+    description="An easy to use logging wrapper.",
     url='https://github.com/FuelRats/mechachainsaw',
     version='1.2',
     packages=['mechachainsaw', ],
