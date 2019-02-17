@@ -8,7 +8,7 @@ This project is currently in *pre-release*.  Use at your own risk!
 
 ### Requirements
 * Python 3.7+
-* coloredlogs
+* coloredlogs library
 
 ### Installation
 This is python library.  Install using pip/pipenv
@@ -32,5 +32,5 @@ will get you:
 
 ### License
 
-*Boomstick* is licensed under the BSD 3-Clause License.
+*Mecha Chainsaw* is licensed under the BSD 3-Clause License.
 

@@ -14,6 +14,7 @@ setup(
     packages=['mechachainsaw', ],
     license='BSD-3-Clause',
     long_description=long_description,
+    long_description_content_type="text/markdown",
     install_requires=['coloredlogs'],
     classifiers=["Programming Language :: Python :: 3",
                  "License :: OSI Approved :: BSD License",
