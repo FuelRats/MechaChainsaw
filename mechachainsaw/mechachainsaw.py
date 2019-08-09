@@ -80,8 +80,6 @@ class Logger(logging.Logger):
         # disable propagation
         self.propagate = False
 
-        self.debug("Chainsaw Loaded and ready for logging.")
-
     def demo(self):
         self.debug("Example Debug Statement")
         self.info("Example INFO Statement")
